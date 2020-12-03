@@ -16,5 +16,8 @@
     "@capacitor/cli": "^2.4.4",
     "@capacitor/core": "^2.4.4",
     "@capacitor/ios": "^2.4.4"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.13"
   }
 }
