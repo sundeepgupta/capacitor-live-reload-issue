@@ -18,3 +18,8 @@ target 'App' do
   capacitor_pods
   # Add your Pods here
 end
+
+target 'AppTests' do
+  capacitor_pods
+  # Add your Pods here
+end

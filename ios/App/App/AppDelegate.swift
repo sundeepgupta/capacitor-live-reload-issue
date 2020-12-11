@@ -1,14 +1,26 @@
 import UIKit
 import Capacitor
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
-
+    var bridge: CAPBridge!
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    let bridgeViewController = CAPBridgeViewController()
+
+    window = UIWindow(frame: UIScreen.main.bounds)
+    window?.makeKeyAndVisible()
+    window?.rootViewController = bridgeViewController
+
+    bridge = bridgeViewController.bridge
+
+    // Need to wait I guess until the web/DOM/JS is loaded?
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+//        self.bridge.triggerWindowJSEvent(eventName: "fixme", data: "{\"value\":123}")
+//    }
+
     return true
   }
 
