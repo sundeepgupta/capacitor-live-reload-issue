@@ -15,11 +15,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.rootViewController = bridgeViewController
 
     bridge = bridgeViewController.bridge
+    let webView = bridgeViewController.bridgedWebView!
 
     // Need to wait I guess until the web/DOM/JS is loaded?
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1){
 //        self.bridge.triggerWindowJSEvent(eventName: "fixme", data: "{\"value\":123}")
-//    }
+        webView.evaluateJavaScript("upperCaseAsync('abc')") { value, error in
+            print(value)
+            print(error)
+        }
+
+//        if #available(iOS 14.0, *) {
+//            webView.callAsyncJavaScript(
+//                """
+//                return new Promise((resolve, reject) => {
+//                    setTimeout(() => {
+//                      resolve(text.toUpperCase());
+//                    }, 300);
+//                  });
+//                """,
+//                arguments: ["text": "abc"],
+//                in: nil,
+//                in: .defaultClient
+//            ) {
+//                print($0) }
+//        } else {
+//            // Fallback on earlier versions
+//        }
+    }
 
     return true
   }
